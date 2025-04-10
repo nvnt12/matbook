@@ -78,25 +78,25 @@ export default function LoginPage() {
 				fill
 				priority
 			/>
-			<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/70 grid grid-cols-2 gap-40">
-				<div className="flex flex-col gap-24 justify-center items-end">
-					<div className="flex w-md items-center gap-2 text-white">
-						<Image src="/assets/logo.svg" alt="Logo" width={270} height={64} />
+			<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/70 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-40 pt-6 px-4">
+				<div className="flex flex-col gap-6 sm:gap-10 md:gap-16 lg:gap-24 justify-end lg:justify-center items-center lg:items-end">
+					<div className="flex w-full max-w-sm lg:w-md justify-center md:justify-start items-center gap-2 text-white">
+						<Image src="/assets/logo.svg" alt="Logo" width={270} height={64} className=' w-36 md:w-48 lg:w-52' />
 					</div>
-					<div className="w-md text-white">
-						<h1 className="text-4xl font-bold mb-4">Building the Future...</h1>
-						<p className="text-base font-light">
+					<div className=" w-full max-w-sm lg:w-md text-white">
+						<h1 className=" text-2xl md:text-3xl lg:text-4xl text-center md:text-left font-bold mb-4">Building the Future...</h1>
+						<p className="hidden md:block text-sm lg:text-base font-light">
 							Manage tasks effortlessly with an interactive editor, real-time
 							tracking, secure authentication, and seamless API integration—all in one
 							place.
 						</p>
 					</div>
 				</div>
-				<div className="flex items-end justify-start">
+				<div className="flex items-end justify-center lg:justify-start">
 					<div className="w-md space-y-9 bg-white rounded-t-2xl p-10">
 						<div className="text-left">
-							<h2 className="text-sm font-medium">WELCOME BACK!</h2>
-							<p className="text-[26px] font-semibold">Log In to your Account</p>
+							<h2 className="text-xs md:text-sm font-medium">WELCOME BACK!</h2>
+							<p className=" text-xl md:text-2xl lg:text-[26px] font-semibold">Log In to your Account</p>
 						</div>
 
 						<Form {...form}>
@@ -142,7 +142,7 @@ export default function LoginPage() {
 									)}
 								/>
 
-								<div className="flex items-center justify-between">
+								<div className="flex gap-2 items-center justify-between flex-wrap">
 									<FormField
 										control={form.control}
 										name="rememberMe"
@@ -155,7 +155,7 @@ export default function LoginPage() {
 												/>
 												<label
 													htmlFor="rememberMe"
-													className="text-sm font-medium leading-none"
+													className=" text-xs md:text-sm font-medium leading-none"
 												>
 													Remember me
 												</label>
@@ -165,7 +165,7 @@ export default function LoginPage() {
 									<Button
 										type="button"
 										variant="link"
-										className="p-0 text-[#424242] text-sm"
+										className="p-0 text-[#424242] text-xs md:text-sm"
 									>
 										Forgot Password?
 									</Button>
@@ -179,7 +179,7 @@ export default function LoginPage() {
 									{isLoading ? 'Logging in...' : 'Log In'}
 								</Button>
 
-								<div className="relative">
+								<div className="relative hidden md:block">
 									<div className="absolute inset-0 flex items-center">
 										<span className="w-full border-t border-[#E0E0E0]" />
 									</div>
@@ -190,27 +190,27 @@ export default function LoginPage() {
 									</div>
 								</div>
 
-								<div className="grid gap-3">
+								<div className="hidden md:grid gap-3">
 									<Button type="button" variant="outline" className="relative">
-										<FcGoogle className="absolute left-14 h-4 w-4" />
+										<FcGoogle className="absolute left-6 md:left-14 h-4 w-4" />
 										Log In with Google
 									</Button>
 									<Button type="button" variant="outline" className="relative">
-										<FaFacebook className="absolute fill-[#039BE5] left-14 mr-2 h-4 w-4" />
+										<FaFacebook className="absolute fill-[#039BE5] left-6 md:left-14 mr-2 h-4 w-4" />
 										Log In with Facebook
 									</Button>
 									<Button type="button" variant="outline" className="relative">
-										<FaApple className="absolute fill-black left-14 mr-2 h-4 w-4" />
+										<FaApple className="absolute fill-black left-6 md:left-14 mr-2 h-4 w-4" />
 										Log In with Apple
 									</Button>
 								</div>
 
-								<p className="text-center text-sm text-black">
+								<p className="text-center text-xs md:text-sm text-black">
 									New User?{' '}
 									<Button
 										type="button"
 										variant="link"
-										className="px-0 text-black font-semibold"
+										className="px-0 text-black !text-xs !md:text-sm font-semibold"
 									>
 										SIGN UP HERE
 									</Button>

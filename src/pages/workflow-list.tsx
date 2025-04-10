@@ -88,8 +88,8 @@ export default function WorkflowTable() {
 				</Button>
 				<h1 className="text-xl font-bold">Workflow Builder</h1>
 			</div>
-			<div className="pl-10">
-				<div className="flex items-center justify-between mb-4">
+			<div className="pl-0 sm:pl-10">
+				<div className="flex flex-wrap gap-4 items-center justify-between mb-4">
 					<Input
 						className="w-96 border-black"
 						placeholder="Search by Workflow Name/ID"
@@ -106,7 +106,7 @@ export default function WorkflowTable() {
 				</div>
 				<Table className="border-none">
 					<TableHeader>
-						<TableRow className="">
+						<TableRow>
 							<TableHead>Workflow Name</TableHead>
 							<TableHead>ID</TableHead>
 							<TableHead>Last Edited On</TableHead>
@@ -117,7 +117,6 @@ export default function WorkflowTable() {
 					<TableBody>
 						{workflows.map((workflow: Workflow, index) => (
 							<React.Fragment key={index}>
-								{/* Main row */}
 								<TableRow>
 									<TableCell>{workflow?.name}</TableCell>
 									<TableCell>{workflow?.workflowId}</TableCell>

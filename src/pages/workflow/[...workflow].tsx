@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiMinus, FiPlus } from 'react-icons/fi'
 import { FaSave, FaTrashAlt } from 'react-icons/fa'
 import { AddNodeModal } from '@/components/AddNodeModal'
@@ -113,10 +113,18 @@ export default function FlowEditor() {
 
 	const zoomIn = () => setZoom(z => Math.min(2, z + 0.1))
 	const zoomOut = () => setZoom(z => Math.max(0.5, z - 0.1))
+	
+	useEffect(() => {
+		const token = localStorage.getItem('token')
+
+		if (!token) {
+			router.replace('/workflow-list')
+		}
+	}, [])
 
 	return (
 		<div
-			className="relative h-screen w-full overflow-auto bg-[#fdf6ec] p-10"
+			className="relative h-screen w-full overflow-auto bg-[#fdf6ec] p-10 pt-16"
 			style={{
 				backgroundImage: 'radial-gradient(#d7cbb3 1px, transparent 1px)',
 				backgroundSize: '20px 20px'
