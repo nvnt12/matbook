@@ -41,8 +41,6 @@ export const SaveWorkflowModal = ({
 
 	const handleSubmit = form.handleSubmit(values => {
 		onSubmit(values)
-		onClose()
-		form.reset()
 	})
 
 	return (

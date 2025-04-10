@@ -18,7 +18,7 @@ export type TextNode = {
 }
 
 export type WorkflowNode = {
-	id: string // unique ID for node
+	id: string
 	type: NodeType
 	data: ApiNode | EmailNode | TextNode
 }
@@ -33,5 +33,9 @@ export type Workflow = {
 	workflowId: string
 	updatedAt: string
 	status: string
-	nodes: WorkflowNode[]
+	nodes: WorkflowNode[],
+	statusHistory: { 
+		status: string; 
+		timestamp: string; 
+	  }[];
 }

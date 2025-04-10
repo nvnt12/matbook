@@ -8,6 +8,7 @@ import { HiArrowLeft } from 'react-icons/hi'
 import { ApiNode, EmailNode, NodeType, TextNode, Workflow, WorkflowNode } from '@/lib/type'
 import { getUserIdFromToken } from '@/hooks/getUserIdFromToken'
 import { DeleteNodeModal } from '@/components/DeleteNodeModal'
+import { runNode } from '@/lib/utils'
 
 const NODE_LABELS: Record<NodeType, string> = {
 	api: 'API Call',
@@ -34,35 +35,6 @@ export default function FlowEditor() {
 		console.log('New node added:', newNode)
 	}
 
-	async function runNode(node: WorkflowNode): Promise<'passed' | 'failed'> {
-		if (node.type === 'text') return 'passed'
-
-		if (node.type === 'email') {
-			const emailData = node.data as EmailNode
-			return emailData.email ? 'passed' : 'failed'
-		}
-
-		if (node.type === 'api') {
-			const apiData = node.data as ApiNode
-			try {
-				const res = await fetch(apiData.url, {
-					method: apiData.method,
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: 'Bearer your-token'
-					},
-					body: apiData.method !== 'GET' ? JSON.stringify(apiData.body) : undefined
-				})
-				console.log('API response:', res)
-				return res.ok ? 'passed' : 'failed'
-			} catch (e) {
-				console.log(e)
-				return 'failed'
-			}
-		}
-		return 'failed'
-	}
-
 	const handleSaveWorkflow = async (
 		data: Pick<Workflow, 'name' | 'description'> & {
 			author: Pick<Workflow['author'], 'firstName' | 'lastName'>
@@ -85,7 +57,7 @@ export default function FlowEditor() {
 		}
 
 		try {
-			const res = await fetch('/api/workflows', {
+			const res = await fetch('/api/workflow/create', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -97,6 +69,7 @@ export default function FlowEditor() {
 
 			const data = await res.json()
 			console.log('Workflow saved:', data)
+			setSaveModalOpen(false)
 			alert('Workflow saved successfully!')
 			router.push('/workflow-list')
 		} catch (err) {

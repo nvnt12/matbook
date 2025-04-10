@@ -15,6 +15,21 @@ const nodeSchema = new mongoose.Schema(
 	{ _id: false }
 )
 
+const statusHistorySchema = new mongoose.Schema(
+	{
+		status: {
+			type: String,
+			enum: ['passed', 'failed'],
+			required: true
+		},
+		timestamp: {
+			type: Date,
+			default: Date.now
+		}
+	},
+	{ _id: false }
+)
+
 const workflowSchema = new mongoose.Schema(
 	{
 		workflowId: { type: String, required: true },
@@ -32,6 +47,10 @@ const workflowSchema = new mongoose.Schema(
 		status: {
 			type: String,
 			enum: ['passed', 'failed']
+		},
+		statusHistory: {
+			type: [statusHistorySchema],
+			default: []
 		}
 	},
 	{ timestamps: true }
